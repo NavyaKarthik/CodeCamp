@@ -1,0 +1,28 @@
+            d3.text("circlevalues.csv", function (datasetText) {
+//gets the contents of the csv file circlevalues.csv. The values will be in the form of a string including the newline
+                var values = d3.csvParseRows(datasetText);
+//Parse the data received, which populates the values variable as array of arrays. where each array inside values represents a line in the csv file
+                for (var k = 0; k < values.length; k++) {
+//Iterate through array values
+                    var len = 0;
+                    if (k>0){
+                        len = values[k-1].length;
+                    }
+//len is the number of elements in the previous row. eg: in our example 10,20,30,40,50 a total of 5 numbers in first row. hence for the circle of 60,70,80,90,100 to start where first row elements stopped, we need the length of first row
+                    d3.select("#svg1").selectAll('circle')
+//select svg with id "svg1"
+                    .data(values[k], function (d) { return d; })
+//Since the values array contains 2 arrays, if we just include data(values[k]) only the circles representing first row will be displayed, when the second row iterates, since there are already 5 circles displayed for first row, enter() dosnot consider the next set of circles to be drawn.
+                    .enter()
+                    .append('circle')
+                    .attr('r', function (d) { return parseInt(d); })
+                    .attr('cx', function (d, i) {
+                        return parseInt(d) + (parseInt(d) * (len+i));
+//the x position for the circle to be drawn.
+                    })
+                    .attr('cy', function (d, i) {
+                            return 200;
+//A constant value of y position. This can be any value.
+                       
+                    })
+                }
