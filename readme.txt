@@ -1,0 +1,1 @@
+The code reads the contents of CSV file which contains circle radius as data seperated by commas. There are 2 columns, where the code takes each data and draws circle one beside the other as provided in the image.
