@@ -1,5 +1,3 @@
- <script type="text/javascript">
-
 var CenterX = 0,
     CenterY = 0,
     TopX,
@@ -143,5 +141,3 @@ function selectColor(progress) {
 
     }
 }
-
-</script>
